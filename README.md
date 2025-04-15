@@ -18,7 +18,7 @@ Usage:
 
 In the terminal:
 
-    lucidlink lucid://.......
+    lucidlinks lucid://.......
 
 TODOs:
 ------
