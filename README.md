@@ -9,6 +9,8 @@ https://www.lucidlink.com/classic
 Install
 -------
 
+From the root-folder:
+
     npm i -g .
 
 Usage:
