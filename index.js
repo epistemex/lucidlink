@@ -19,7 +19,7 @@
 'use strict';
 
 const path = require('path');
-const { spawn, spawnSync } = require('child_process');
+const { spawnSync } = require('child_process');
 
 /*
   1. Get lucid2 path
@@ -66,7 +66,7 @@ const id = +instance[ 0 ];
 const fileSpace = instance[ 1 ];
 const port = +instance[ 2 ];
 
-const linkParts = link.split('/');
+const linkParts = link.replace(/[\n\r\t]/gm, '').split('/');
 const fileId = linkParts[ 4 ];
 
 const url = `http://localhost:${ port }/fsEntry?id=${ fileId }`;
@@ -79,7 +79,7 @@ const url = `http://localhost:${ port }/fsEntry?id=${ fileId }`;
 
     console.log(`Local path: ${ fullPath }`);
 
-    spawn('dolphin', [ '--select', fullPath ], {
+    spawnSync('dolphin', [ '--select', fullPath ], {
       encoding: 'utf8',
       detached: true,
       stdio   : 'ignore'
