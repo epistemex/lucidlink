@@ -1,0 +1,10 @@
+{
+  "name": "lucidlinks",
+  "version": "0.2.0-alpha",
+  "description": "Show lucid:// links in KDE Dolphin",
+  "bin": "./index.js",
+  "keywords": [],
+  "author": "Chris Nilsen (epistemex)",
+  "license": "MIT",
+  "type": "commonjs"
+}
