@@ -77,7 +77,7 @@ const url = `http://localhost:${ port }/fsEntry?id=${ fileId }`;
     const json = await result.json();
     const fullPath = path.join(mountPoint, json.path);
 
-    console.log(`Local path: ${ fullPath }`);
+    console.log(fullPath);
 
     spawnSync('dolphin', [ '--select', fullPath ], {
       encoding: 'utf8',
