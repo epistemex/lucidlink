@@ -45,9 +45,12 @@ if ( !link.toLowerCase().startsWith('lucid://') ) {
   return console.warn('Unsupported link type.');
 }
 
-const mountPoint = spawnSync(lucid2, [ 'config' ], { encoding: 'utf8' })
-  .stdout
-  .split('\n')
+const config = spawnSync(lucid2, [ 'config' ], { encoding: 'utf8' }).stdout;
+if ( !config.trim().length ) {
+  return console.log('Lucid is currently not running.');
+}
+
+const mountPoint = config.split('\n')
   .filter(e => e.startsWith('FileSystem.MountPointLinux'))[ 0 ]
   .replace(/\s\s+/g, ' ')
   .split(' ')[ 1 ];
@@ -57,7 +60,9 @@ const instance = spawnSync(lucid2, [ 'list' ], { encoding: 'utf8' })
   .split('\n')
   .filter(e => e.trim().length)[ 1 ]
   .replace(/\s\s+/g, ' ')
-  .split(' ');
+  .split(' ')[ 0 ];
+
+console.log(instance);
 
 const id = +instance[ 0 ];
 const fileSpace = instance[ 1 ];
@@ -73,6 +78,9 @@ const url = `http://localhost:${ port }/fsEntry?id=${ fileId }`;
     const result = await fetch(url);
     const json = await result.json();
     const fullPath = path.join(mountPoint, json.path);
+
+    console.log(`Local path: ${ fullPath }`);
+
     spawn('dolphin', [ '--select', fullPath ], {
       encoding: 'utf8',
       detached: true,
