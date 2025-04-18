@@ -46,7 +46,7 @@ if ( !link.toLowerCase().startsWith('lucid://') ) {
 }
 
 const config = spawnSync(lucid2, [ 'config' ], { encoding: 'utf8' }).stdout;
-if ( !config.trim().length ) {
+if ( !config.trim().length || config.includes('not running') ) {
   return console.log('Lucid is currently not running.');
 }
 
