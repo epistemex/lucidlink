@@ -60,9 +60,7 @@ const instance = spawnSync(lucid2, [ 'list' ], { encoding: 'utf8' })
   .split('\n')
   .filter(e => e.trim().length)[ 1 ]
   .replace(/\s\s+/g, ' ')
-  .split(' ')[ 0 ];
-
-console.log(instance);
+  .split(' ');
 
 const id = +instance[ 0 ];
 const fileSpace = instance[ 1 ];
